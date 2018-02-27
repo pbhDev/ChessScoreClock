@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Chess ScoreKeeper</string>
+    <string name="player_a">Player A</string>
+    <string name="player_b">Player B</string>
+    <string name="addToScoreB">+ WIN</string>
+    <string name="addToScoreA">+ WIN</string>
+    <string name="cancel_last_change">cancel last change</string>
+</resources>

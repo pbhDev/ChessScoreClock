@@ -1,0 +1,861 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_chess"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <LinearLayout
+                android:id="@+id/after_clock_stop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                tools:visibility="visible">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Winner?"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="50dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="0.2">
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="PLAYER A"
+                        android:onClick="addToScoreA"
+                        android:layout_marginRight="100dp"
+
+                        />
+
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="addToScoreB"
+                        android:text="PLAYER B"
+
+                        />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:gravity="center">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="incrementForDraw"
+                        android:text="DRAW"/>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <Button
+                        android:contentDescription="RETURN TO SCORING BOARD"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:onClick="returnToScoringBoard"
+                        android:text="RETURN TO SCORING BOARD"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_gravity="center"
+                        android:onClick="cancelStopClock"
+
+                        android:text="CANCEL"/>
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/my_clock"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                tools:visibility="invisible"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.43">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/button_player_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.9"
+                            android:gravity="center"
+                            android:background="#D3D3D3"
+                            android:onClick="stopClockB"
+                            android:rotation="-180"
+                            android:text="00:00"
+                            android:textSize="90dp"/>
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:gravity="center_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:background="#00FF"
+                            android:rotation="-180"
+                            android:text="PLAYER B"
+                            android:textSize="28dp"
+
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.14"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/button_play_clock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.4"
+                        android:text="Press your\ntimer to start\nopponent's"
+                        android:textStyle="bold"
+                        android:background="@color/my_green"
+                        android:visibility="visible"/>
+                    <Button
+                        android:id="@+id/button_pause_clock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:text="PAUSE"
+                        android:textColor="#FFF"
+                        android:onClick="pauseClock"
+                        android:textStyle="bold"
+                        android:background="#000"
+                        android:visibility="invisible"
+                        tools:visibility="visible"
+                        />
+
+                    <Button
+                        android:id="@+id/button_stop_clock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="STOP"
+                        android:onClick="stopClock"
+                        android:textStyle="bold"
+                        android:background="#ff0000"
+                        android:visibility="invisible"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.43">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.1"
+                            android:gravity="center_horizontal"
+                            android:layout_marginBottom="5dp"
+                            android:background="#00FF"
+
+                            android:text="PLAYER A"
+                            android:textSize="28dp"
+
+                            />
+
+                        <Button
+                            android:id="@+id/button_player_a"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.9"
+                            android:background="#D3D3D3"
+                            android:onClick="stopClockA"
+                            android:text="00:00"
+                            android:textSize="90dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/my_intro"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible"
+                tools:visibility="invisible"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginTop="50dp"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:text="How many points in each case?"
+
+
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="50dp"
+                        android:layout_marginLeft="33dp"
+                        >
+                        <TextView
+
+                            android:contentDescription="point in case of a victory"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="24dp"
+                            android:gravity="center"
+                            android:textColor="#000"
+                            android:text="WIN"/>
+                        <Button
+                            android:id="@+id/set_win_minus"
+                            android:layout_width="58dp"
+                            android:layout_height="48dp"
+                            android:contentDescription="decrement time minutes player a"
+                            android:onClick="decrementWin"
+                            android:text="-"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/current_win"
+                            android:contentDescription="current time minutes player a"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:hint="1.0"
+                            android:text=""/>
+
+                        <Button
+                            android:id="@+id/set_win_plus"
+                            android:layout_width="58dp"
+                            android:layout_height="48dp"
+                            android:contentDescription="increment time minutes player A"
+                            android:onClick="incrementWin"
+                            android:text="+"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="33dp">
+
+                        <TextView
+
+                            android:contentDescription="point in case of a draw"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="24dp"
+                            android:gravity="center"
+                            android:textColor="#000"
+                            android:text="DRAW"/>
+
+                        <Button
+                            android:id="@+id/set_draw_minus"
+                            android:layout_width="58dp"
+                            android:layout_height="48dp"
+
+                            android:contentDescription="decrement time seconds player a"
+                            android:onClick="decrementDraw"
+                            android:text="-"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/current_draw"
+                            android:contentDescription="current time seconds player a"
+                            android:layout_width="50dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:hint="0.5"
+                            android:text=""/>
+
+                        <Button
+                            android:id="@+id/set_draw_plus"
+                            android:layout_width="58dp"
+                            android:layout_height="48dp"
+                            android:contentDescription="increment time seconds player A"
+                            android:onClick="incrementDraw"
+                            android:text="+"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <Button
+                    android:layout_width="170dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Enter"
+                    android:onClick="launchBoard"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pre_board"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                tools:visibility="invisible"
+                >
+
+                <LinearLayout
+                    android:id="@+id/board"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="sens-serif-medium"
+                            android:gravity="center"
+                            android:text="@string/player_a"
+                            android:textColor="#616161"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/player_a_score"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginRight="24dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="0"
+                            android:textColor="#000000"
+                            android:textSize="36sp" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/announcement"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text=""
+                        android:textColor="#000000"
+                        android:textSize="25sp" />
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="sens-serif-medium"
+                            android:gravity="center"
+                            android:text="@string/player_b"
+                            android:textColor="#616161"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/player_b_score"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginTop="16dp"
+
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="center"
+                            android:padding="4dp"
+                            android:text="0"
+                            android:textColor="#000000"
+                            android:textSize="36sp" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/my_buttons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_below="@id/board"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/win_a"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:contentDescription="decrement"
+                            android:onClick="addToScoreA"
+                            android:text="@string/addToScoreA"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal">
+
+
+                        <Button
+                            android:id="@+id/button_draw"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="#D3D3D3"
+                            android:contentDescription="increment with even points"
+                            android:onClick="incrementForDraw"
+                            android:text="draw"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal">
+
+                        <Button
+                            android:id="@+id/win_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:contentDescription="decrement"
+                            android:onClick="addToScoreB"
+                            android:text="@string/addToScoreB"
+                            android:textStyle="bold" />
+
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_below="@id/my_buttons"
+                    android:id="@+id/cancel_change"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:contentDescription="Button cancel last change"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:onClick="cancelLastChange"
+                        android:text="@string/cancel_last_change" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/num_moves"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginRight="16dp"
+                    android:gravity="center"
+                    android:layout_below="@id/my_buttons"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/moves_minus"
+                        android:layout_width="90dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="decrement time minutes player a"
+                        android:onClick="decrementNumMoves"
+                        android:text="-"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/current_move"
+                        android:contentDescription="current time minutes player a"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:hint="moves"
+                        android:text=""/>
+
+                    <Button
+                        android:id="@+id/moves_plus"
+                        android:layout_width="90dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="increment time minutes player A"
+                        android:onClick="incrementNumMoves"
+                        android:text="+"
+                        android:textStyle="bold" />
+
+
+
+                </LinearLayout>
+
+
+
+
+
+                <LinearLayout
+                    android:id="@+id/buttons_of_timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    //from here
+
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="8dp"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center_horizontal">
+
+                            <Button
+                                android:id="@+id/button_minus_time_minutes_a"
+                                android:layout_width="58dp"
+                                android:layout_height="48dp"
+                                android:contentDescription="decrement time minutes player a"
+                                android:onClick="decrementTimeMinutesA"
+                                android:text="-"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/current_time_minutes_a"
+                                android:contentDescription="current time minutes player a"
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:hint="min"
+                                android:text=""/>
+
+                            <Button
+                                android:id="@+id/button_plus_time_minutes_a"
+                                android:layout_width="58dp"
+                                android:layout_height="48dp"
+                                android:contentDescription="increment time minutes player A"
+                                android:onClick="incrementTimeMinutesA"
+                                android:text="+"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center_horizontal">
+
+                            <Button
+                                android:id="@+id/button_minus_time_seconds_a"
+                                android:layout_width="58dp"
+                                android:layout_height="48dp"
+
+                                android:contentDescription="decrement time seconds player a"
+                                android:onClick="decrementTimeSecA"
+                                android:text="-"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/current_time_sec_a"
+                                android:contentDescription="current time seconds player a"
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:hint="sec"
+                                android:text=""/>
+
+                            <Button
+                                android:id="@+id/button_plus_time_seconds_a"
+                                android:layout_width="58dp"
+                                android:layout_height="48dp"
+                                android:contentDescription="increment time seconds player A"
+                                android:onClick="incrementTimeSecA"
+                                android:text="+"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/button_Start"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="#D3D3D3"
+                        android:contentDescription="decrement"
+                        android:onClick="startViewTimer"
+                        android:text="Start Timer"
+                        android:textStyle="bold" />
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginLeft="8dp"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center_horizontal">
+
+                            <Button
+                                android:id="@+id/button_minus_time_b"
+                                android:layout_width="58dp"
+                                android:layout_height="48dp"
+
+                                android:contentDescription="decrement time minutes player b"
+                                android:onClick="decrementTimeMinutesB"
+                                android:text="-"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/current_time_minutes_b"
+                                android:contentDescription="current time minutes player B"
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:hint="min"
+                                android:text=""/>
+
+                            <Button
+                                android:id="@+id/button_plus_time_b"
+                                android:layout_width="58dp"
+                                android:layout_height="48dp"
+
+                                android:contentDescription="increment time minutes player B"
+                                android:onClick="incrementTimeMinutesB"
+                                android:text="+"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center_horizontal">
+
+                            <Button
+                                android:id="@+id/button_minus_time_seconds_b"
+                                android:layout_width="58dp"
+                                android:layout_height="48dp"
+
+                                android:contentDescription="decrement seconds time player b"
+                                android:onClick="decrementTimeSecB"
+                                android:text="-"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/current_time_sec_b"
+                                android:contentDescription="current time seconds player b"
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:hint="sec"
+                                android:text=""/>
+
+                            <Button
+                                android:id="@+id/button_plus_time_sec_b"
+                                android:layout_width="58dp"
+                                android:layout_height="48dp"
+
+                                android:contentDescription="increment seconds time player B"
+                                android:onClick="incrementTimeSecB"
+                                android:text="+"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+
+
+                    //to here
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/set_timer"
+                    android:layout_below="@id/cancel_change"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:visibility="visible"
+                    >
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="showButtonsTimer"
+                        android:text="set timer" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_alignParentBottom="true"
+                    >
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:onClick="myResetButton"
+                        android:text="Reset" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>
+
